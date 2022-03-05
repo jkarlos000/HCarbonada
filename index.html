@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <!-- css -->
+    <link rel="stylesheet" href="jquery.mobile-1.3.0/jquery.mobile-1.3.0.min-adaptado.css" />
+    <link rel="stylesheet" href="assets/css/mobilize.css">
+
+    <!-- scripts -->
+    <script src="jquery.mobile-1.3.0/jquery-1.8.2.min.js"></script>
+    <script src="jquery.mobile-1.3.0/jquery.mobile-1.3.0.min.js"></script>
+    <script src="assets/js/screen.js"></script>
+
+    <!-- graf chart -->
+    <script type="text/javascript" src="includes/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="includes/jqplot.barRenderer.min.js"></script>
+    <script type="text/javascript" src="includes/jqplot.categoryAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="includes/jqplot.pointLabels.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="includes/jquery.jqplot.min.css" />
+
+    <script type="text/javascript" src="includes/file.js"></script>
+
+    <title>Huellita Carbonada</title>
+
+
+    <script class="code" type="text/javascript">
+        $('#calcu12').live('pageshow', function graph(){
+            $.jqplot.config.enablePlugins = true;
+            var s1 = [totalAutos, totalTransportePublico, totalGlp, totalElectricidad, totalAvion ];
+            var ticks = ['TPr', 'TPu', 'GLP', 'Elec.', 'Vue.'];
+
+            plot = $.jqplot('chart1', [s1], {
+                // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+                animate: !$.jqplot.use_excanvas,
+                seriesDefaults:{
+                    renderer:$.jqplot.BarRenderer,
+                    pointLabels: { show: false },
+                    rendererOptions: {varyBarColor: true }
+                },
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        ticks: ticks,
+                        label:'Valores en Ton CO2e/año',
+                    },
+                },
+            });
+        });
+    </script>
+
+
+
+    <style>
+        .cabecera {
+            width:auto;
+            height:50px;
+            background: #000 url(img/header.png) top no-repeat;
+            background-size:100% 100%;
+            margin:auto;
+            padding:0;
+        }
+
+        .footerall{
+            width: 100%;
+            height: px;
+            background: url(img/div.png) top no-repeat;
+            margin: 0;
+            border: none;
+            padding-top: 0px;
+            text-align: center;
+        }
+
+        [data-role=footer]
+        {bottom:-20%; position:absolute !important; top: auto !important; width:100%;}
+
+        h1 {color:#555555;}
+        h3 {color:#555555; font-size:16px;}
+        }
+    </style>
+
+</head>
+<body>
+
+<form method="post" name="MyForm">
+
+
+    <div id="home-page" data-role="page">
+
+        <!-- slider -->
+        <script>
+            jQuery(function(){
+                jQuery('#camera_wrap').camera({
+
+                    loader				: 'bar',
+                    navigation			: true,
+                    navigationHover		: false,
+
+                });
+            });
+        </script>
+        <!-- /slider -->
+
+        <!-- header -->
+        <div data-role="header" class="page-header">
+            <div class="intro" align="center"></div>
+        </div>
+        <!--/header -->
+
+        <!-- main content -->
+        <div data-role="content">
+
+            <!-- slider -->
+            <div class="slider-outer">
+                <div class="slider-container">
+                    <div id="camera_wrap">
+                        <div data-src="img/slide1.png">
+                        </div>
+                        <div data-src="img/slide2.png">
+                        </div>
+                    </div>
+                </div>
+                <br class="clear" />
+            </div><!-- /slider -->
+
+            <div class="shadow1box">
+                <img src="assets/img/shadow1.png" class="shadow1" alt="shadow">
+            </div>
+
+            <div class="content-padd">
+                <p align="center"><img src="img/huella.jpg"></p>
+                <p>El objetivo de este prototipo es dar una propuesta de concientizar a los miembros de tu organización sobre el impacto que tiene cada individuo sobre el planeta, esto a causa del estilo de vida que viven, a cambio de ello se logrará reducir el efecto invernadero generado por sus actividades diarias.</p>
+                <p>Huellita de Carbono nos permitirá medir el impacto que ocasionamos a nuestro medio ambiente, ya que día a día contribuimos de manera que no nos damos cuenta por nuestras actividades cotidianas a los efectos de los gases invernaderos, esto como ser el uso de tu vehiculo. la frecuencia en que andamos en transporte público, viajes, consumo eléctrico, etc.</p>
+                <p>Como conclusión argumentar que es posible separar la capa de captura de datos de cada empleado y almacenarlos en un servidor de persistencia de datos donde la gerencia de nuestra empresa pueda orientar luego a cada miembro de su organización, de este modo apoyar al medio ambiente y volverte una empresa verde, además de conocer el estilo de vida de los miembros de la organización y tomar decisiones sobre como apoyarlos y mejorar su estilo de vida.</p>
+
+                <!-- navigation -->
+                <ul data-role="listview" data-inset="true" id="listview" style="margin-bottom:0px">
+                    <li><a href="#quees" data-prefetch>Acerca de Huellita de Carbono</a></li>
+                    <li><a href="#calcu" data-prefetch>¿Estoy haciendo mi Huellita de Carbono?</a></li>
+                </ul>
+
+                <!-- /navigation -->
+
+            </div>
+
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+        <!-- /footer -->
+
+    </div><!-- /page -->
+
+
+    <!-- que es la hc -->
+    <div data-role="page" id="quees">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+                <h1 align="center" style="color:#8a0aa0">¿Qué es la Huellita Carbonada?</h1>
+                <p align="center">La Huella de Carbono es una medida de cuantificación del impacto en el cambio climático de las actividades que se realizan a diario por parte de individuos, organizaciones, productos o territorios. </p>
+                <p align="center">La Huella de Carbono se ha convertido en un importante indicador en el debate público sobre cambio climático, atrayendo la atención de consumidores, negocios, gobiernos e instituciones preocupadas por el impacto de sus actividades en el medio ambiente. Se constituye en una herramienta de gestión de carbono.</p>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+
+
+    <!-- calculadora hc -->
+    <div data-role="page" id="calcu">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h1 align="center" style="color:#8a0aa0">INICIO</h1>
+                <p align="center"><img src="img/icono-casa.jpg"></p>
+                <h2 align="center">¿Cuántas personas viven en tu casa?</h2>
+                <table width="250" align="center">
+                    <tr>
+                        <td><input type="number" name="PERSONAS" align="right" id="PERSONAS"></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right" onClick="if (document.getElementById('PERSONAS').value>0){window.location='#calcu1';} else alert('¿Cuántas personas?');">SIGUIENTE</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+
+    <!-- inicio calcu1 -->
+    <div data-role="page" id="calcu1">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h1 align="center" style="color:#8a0aa0">ELECTRICIDAD</h1>
+                <p align="center"><img src="img/icono-electricidad.jpg"></p>
+                <h2 align="center">¿Aproximadamente, cuánto pagas al mes por el servicio de energía eléctrica?</h2>
+                <table width="250" align="center">
+                    <tr>
+                        <td><input type="number" name="ELECTRICIDAD" id="ELECTRICIDAD"></td>
+                        <td width="10"></td>
+                        <td><h3> $</h3></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><a href="#" data-role="button"  data-icon="arrow-r" data-iconpos="right" onclick="if ((document.getElementById('ELECTRICIDAD').value>0) && (document.getElementById('ELECTRICIDAD').selectedIndex != 0) ){window.location='#calcu2';} else alert('¿Cuánta Electricidad consumes?');">SIGUIENTE</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+
+    <!-- inicio calcu2 -->
+    <div data-role="page" id="calcu2">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h1 align="center" style="color:#8a0aa0">GAS LICUADO DE PETRÓLEO (GLP)</h1>
+                <p align="center"><img src="img/icono-gas.jpg"></p>
+                <h2 align="center">¿Cuántos cilindros de gas (de 10 libras) usas al mes?</h2>
+                <p align="center"><i>* Si no consumes gas en cilindros, haz click en "SIGUIENTE"</i></p>
+                <table width="250" align="center">
+                    <tr>
+                        <td><input type="number" name="GLP" id="GLP"></td>
+                        <td width="10"></td>
+                        <td><h3> Nº cilindros</h3></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><a href="#calcu2a" data-role="button" data-icon="arrow-r" data-iconpos="right" >SIGUIENTE</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+
+    <!-- inicio calcu2a -->
+    <div data-role="page" id="calcu2a">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h1 align="center" style="color:#8a0aa0">GAS NATURAL</h1>
+                <p align="center"><img src="img/icono-gas-domiciliario.jpg"></p>
+                <h2 align="center">¿Cuánto pagas al mes por el servicio de gas domiciliario?</h2>
+                <p align="center"><i>* Si no consumes gas natural, haz click en "SIGUIENTE"</i></p>
+                <table width="250" align="center">
+                    <tr>
+                        <td><input type="number" name="GAS" id="GAS"></td>
+                        <td width="10"></td>
+                        <td><h3> $</h3></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><a href="#calcu3" data-role="button" data-icon="arrow-r" data-iconpos="right" >SIGUIENTE</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+
+    <!-- inicio calcu3 -->
+    <div data-role="page" id="calcu3">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h1 align="center" style="color:#8A0AA0FF">TRANSPORTE</h1>
+                <p align="center"><img src="img/icono-transporte.jpg"></p>
+                <h2 align="center">¿Tienes vehículo propio?</h2>
+                <table width="183" align="center">
+                    <tr>
+                        <td><a href="#calcu4" data-role="button" data-icon="arrow-r" data-iconpos="right" >Sí</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#calcu9" data-role="button" data-icon="arrow-r" data-iconpos="right" >No</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+
+    <!-- inicio calcu4 -->
+    <div data-role="page" id="calcu4">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h1 align="center" style="color:#8A0AA0FF">TRANSPORTE PRIVADO</h1>
+                <p align="center"><img src="img/icono-transporte.jpg"></p>
+                <h2 align="center"> ¿Cuánto gastas en gasolina por semana?</h2>
+                <table width="250" align="center">
+                    <tr>
+                        <td ><input type="number" name="GASOLINA" id="GASOLINA"></td>
+                        <td width="10"></td>
+                        <td><h3> $</h3></td>
+                    </tr>
+                </table>
+                <h2 align="center"> ¿Cuánto gastas en diésel o ACPM por semana?</h2>
+                <table width="250" align="center">
+                    <tr>
+                        <td ><input type="number" name="DIESEL" id="DIESEL"></td>
+                        <td width="10"></td>
+                        <td><h3> $</h3></td>
+                    </tr>
+                </table>
+                <h2 align="center"> ¿Cuánto gastas en GNV por semana?</h2>
+                <table width="250" align="center">
+                    <tr>
+                        <td ><input type="number" name="GNV" id="GNV"></td>
+                        <td width="10"></td>
+                        <td><h3> $</h3></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><a href="#calcu9" data-role="button" data-icon="arrow-r" data-iconpos="right" >CONTINUAR</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+
+    <!-- inicio calcu9 -->
+    <div data-role="page" id="calcu9">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h1 align="center" style="color:#8A0AA0FF">TRANSPORTE PÚBLICO</h1>
+                <p align="center"><img src="img/icono-publico.jpg"></p>
+                <h2 align="center">¿Usas transporte público?</h2>
+                <table width="183" align="center">
+                    <tr>
+                        <td><a href="#calcu10" data-role="button" data-icon="arrow-r" data-iconpos="right" >Sí</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#calcu11" data-role="button" data-icon="arrow-r" data-iconpos="right" >No</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+
+    <!-- inicio calcu10-->
+    <div data-role="page" id="calcu10" >
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h1 align="center" style="color:#8A0AA0FF">TRANSPORTE PÚBLICO</h1>
+                <p align="center"><img src="img/icono-publico.jpg"></p>
+                <h2 align="center">Cuántas veces al día usas:</h2>
+                <table width="250" border="0" align="center">
+                    <tr>
+                        <td>Microbus</td>
+                        <td><input name="MICROBUS" type="number" id="MICROBUS"></td>
+                    </tr>
+                    <tr>
+                        <td>Bus</td>
+                        <td><input name="BUS" type="number" id="BUS"></td>
+                    </tr>
+                    <tr>
+                        <td>Buseta</td>
+                        <td><input name="BUSETA" type="number" id="BUSETA"></td>
+                    </tr>
+                    <tr>
+                        <td>MIO</td>
+                        <td><input name="MIO" type="number" id="MIO"></td>
+                    </tr>
+                    <tr>
+                        <td>Taxi</td>
+                        <td><input name="TAXI" type="number" id="TAXI"></td>
+                    </tr>
+                    <tr>
+                        <td>Moto Taxi</td>
+                        <td><input name="MOTOTAXI" type="number" id="MOTOTAXI"></td>
+                    </tr>
+                    <tr>
+                        <td>Bici Taxi</td>
+                        <td><input name="BICITAXI" type="number" id="BICITAXI"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><a href="#calcu11" data-role="button" data-icon="arrow-r" data-iconpos="right" >SIGUIENTE</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+
+    <!-- inicio calcu11 -->
+    <div data-role="page" id="calcu11">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h1 align="center" style="color:#8A0AA0FF">VIAJES EN AVIÓN</h1>
+                <p align="center"><img src="img/icono-avion.jpg"></p>
+                <h2 align="center">¿Cuántas veces al año viajas en avión?</h2><p align="center"><i>* Si no viajas en avión haz click en "SIGUIENTE"</i></p>
+                <table width="250" border="0" align="center">
+                    <tr>
+                        <td><p align="right">Vuelos Nacionales </p></td>
+                        <td> <input type="number" name="AVIONCORTO" id="AVIONCORTO"  size="3" maxlength="3"></td>
+                    </tr>
+                    <tr>
+                        <td><p align="right">Vuelos a Sudamérica </p></td>
+                        <td> <input type="number" name="AVIONMEDIO" id="AVIONMEDIO" size="3" maxlength="3"></td>
+                    </tr>
+                    <tr>
+                        <td><p align="right">Vuelos a Norteamérica </p></td>
+                        <td> <input type="number" name="AVIONLARGO" id="AVIONLARGO" size="3" maxlength="3"></td>
+                    </tr>
+                    <tr>
+                        <td><p align="right">Vuelos a Europa </p></td>
+                        <td> <input type="number" name="AVIONEXTENDIDO" id="AVIONEXTENDIDO" size="3" maxlength="3"></td>
+                    </tr>
+                    <tr>
+                        <td><p align="right">Vuelos a otros continentes </p></td>
+                        <td> <input type="number" name="AVIONSUPEREXTENDIDO" id="AVIONSUPEREXTENDIDO" size="3" maxlength="3"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><a href="#calcu12" data-role="button" onclick="{window.location='#calcu12'}; myFunction(); graph();" data-icon="arrow-r" data-iconpos="right" >VER COMPOSICIÓN</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+    <!-- inicio calcu12 -->
+    <div data-role="page" id="calcu12">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h2 align="center" style="color:#8A0AA0FF">Tu Huella de Carbono es:</h2>
+
+                <table width="250" align="center">
+                    <tr align="center">
+                        <td width="130"><input type="number" name="totaltnco2e" id="totaltnco2e" size="4" maxlength="4" readonly></td>
+                        <td><strong>Ton CO2/año</strong></td>
+                    </tr>
+                </table>
+                <table width="250" border="0" align="center">
+                    <tr>
+                        <td><div id="mostrartitulo" align="center"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div id="mostrarimagen" align="center"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div id="mostrarmensaje" align="center"></div></td>
+                    </tr>
+                </table>
+
+                <h2 align="center" style="color:#8A0AA0FF">Composición de tu Huella de Carbono</h2>
+                <table width="250" border="0" align="center">
+                    <tr>
+                        <td><div align="center"><div id="chart1" style="width:250px; height:200px;"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td><br><br>
+                            <img src="img/icono-transporte.jpg" width="25px"> &nbsp TPr = Transporte Privado<br>
+                            <img src="img/icono-publico.jpg" width="30px" height="20px"> &nbsp TPu = Transporte Público<br>
+                            <img src="img/icono-gas.jpg" width="25px"> &nbsp  GLP = Gas Licuado<br>
+                            <img src="img/icono-electricidad.jpg" width="25px"> &nbsp  Elec. = Electricidad<br>
+                            <img src="img/icono-avion.jpg" width="25px"> &nbsp  Vue. = Vuelos
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#reco" data-role="button" data-icon="arrow-r" data-iconpos="right">Aprende como reducir tu Huella</a></td>
+                    </tr>
+                </table>
+
+
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+    <!-- inicio recomendaciones -->
+    <div data-role="page" id="reco">
+
+        <div data-role="header" class="page-header" data-add-back-btn="true">
+            <div class="cabecera" align="center"><img src="img/huellita_carbon.png"></div>
+        </div>
+
+        <div data-role="content">
+            <div class="content-padd">
+
+                <h1 align="center" style="color:#8A0AA0FF">Recomendaciones</h1>
+                <table width="90%" border="0" align="center">
+                    <tr>
+                        <td colspan="2">
+                            <p>	* Sustituir los focos convencionales por focos de bajo consumo.		<br>
+                                * Apagar las luces que no necesito.		<br>
+                                * Desenchufar la televisión si no estoy viendo.<br>
+                                * Apagar la computadora si no la uso. <br>
+                                * Ducharme máximo 5 minutos. Las duchas cortas no solo ahorran agua, sino que también ahorran la energía que se necesita para calentarla.	<br>
+                                * Utilizar más transporte público o compartir mi auto con quienes están en mi ruta.		<br>
+                                * Caminar o usar la bicicleta para distancias cortas.		<br>
+                                * Llevar mi auto al taller regularmente. Esto es para asegurarte que los filtros de combustible, aire y aceite sean reemplazados oportunamente. Cuando tu auto funciona bien genera menos emisiones.		<br>
+                                * Reducir el número de vuelos en avión. El avión es uno de los transportes que más emisiones generan, intenta encontrar un vuelo directo en lugar de uno con escalas.	</p>
+                        </td>
+                    </tr>
+                </table>
+                <p align="center"><a href="#links" data-role="button" data-icon="arrow-r" data-iconpos="right">Links de interés</a></p>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <div class="footerall"><img src="img/uagrm-escudo_50x65.png"></div>
+        </div>
+
+    </div>
+
+</form>
+</body>
+</html>
